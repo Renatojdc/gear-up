@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Creating a new gear offer</h1>
+    <p>description of you gear</p>
+    <%= simple_form_for @gear do |f| %>
+    <%= f.input :sport_type, placeholder: 'Surf' %>
+    <%= f.input :gear_type, placeholder: 'gloves' %>
+    <%= f.input :price, placeholder: '121' %>
+    <%= f.input :address, placeholder: 'Fenda do Biquine, 123' %>
+    <%= f.button :submit, class: "btn btn-primary" %>   <%= link_to "back to gears", gears_path, class: 'btn btn-danger' %>
+  <% end %>
+</div>
