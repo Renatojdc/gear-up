@@ -1,5 +1,29 @@
-<h1>Gears#home</h1>
-<p>Find me in app/views/gears/home.html.erb</p>
+<div class="banner position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://cdn.shopify.com/s/files/1/0274/7219/articles/BOCK_JSkisShoot_Day2-360.jpg?v=1570118224);">
+  <div class="container">
+    <h1>No time to waste <strong>Gear-up</strong> and <strong>have Fun</strong>!</h1>
+  </div>
+  <form class="row g-3 container w-25 p-3 bg-light rounded position-absolute top-50 end-0 translate-middle-y me-5">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Check-in</label>
+      <input type="date" class="form-control" id="inputEmail4">
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Check-out</label>
+      <input type="date" class="form-control" id="inputPassword4">
+    </div>
+    <div class="col-12">
+      <label for="inputLocation" class="form-label">Location</label>
+      <input type="text" class="form-control" id="inputLocation" placeholder="1234 Main St">
+    </div>
+    <div class="col-md-6">
+      <label for="inputSport" class="form-label">Sport</label>
+      <input type="text" class="form-control" id="inputSport">
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+  </form>
+</div>
 
 <ul>
 <%@gears.each do |gear|%>
