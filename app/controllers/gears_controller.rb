@@ -29,15 +29,17 @@ class GearsController < ApplicationController
   end
 
   def edit
-    @gear
+    authorize @gear
   end
 
   def update
+    authorize @gear
     @gear = Gear.update(gear_params)
     redirect_to gear_path
   end
 
   def destroy
+    authorize @gear
     @gear.destroy
     redirect_to root_path, status: :see_other
   end
