@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 puts 'Fetching seed'
 Gear.destroy_all
-# luca = User.new(email: 'lucasallesgomes@hotmail.com', password: '123456', first_name: 'Luca', last_name:'SALLES', address: 'ipanema', date_of_birth: Date.today, phone_number: '980497771')
+User.create(email: 'lucasallesgomes@hotmail.com', password: '123456', first_name: 'Luca', last_name:'SALLES', address: 'ipanema', date_of_birth: Date.today, phone_number: '980497771')
 luca = User.first
 puts 'user created'
 surf_board = Gear.new(sport_type: 'Surf', gear_type: 'board', description: "6'7", address: 'Hawaii', price: 20)
