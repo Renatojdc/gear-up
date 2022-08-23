@@ -14,6 +14,10 @@ class GearPolicy < ApplicationPolicy
     create?
   end
 
+  def show?
+    true
+  end
+  
   def create?
     true
   end

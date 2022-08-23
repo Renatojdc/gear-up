@@ -1,5 +1,5 @@
 class GearsController < ApplicationController
-  skip_before_action :authenticate_user!, only: :home
+  skip_before_action :authenticate_user!, only: %i[home show]
   before_action :set_gear, only: %i[show edit update destroy]
 
   def home
@@ -13,6 +13,7 @@ class GearsController < ApplicationController
   end
 
   def show
+    authorize @gear
   end
 
   def create
@@ -48,6 +49,6 @@ class GearsController < ApplicationController
   end
 
   def gear_params
-    params.require(:gear).permit(:sport_type, :gear_type, :description, :address, :price)
+    params.require(:gear).permit(:sport_type, :gear_type, :description, :address, :price, :amount)
   end
 end
