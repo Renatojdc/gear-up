@@ -1,5 +1,5 @@
 class GearsController < ApplicationController
-  before_action :set_gear, only: %i[show edit update delete]
+  before_action :set_gear, only: %i[show edit update destroy]
 
   def home
     @gears = Gear.all
@@ -32,8 +32,9 @@ class GearsController < ApplicationController
     redirect_to gear_path
   end
 
-  def delete
+  def destroy
     @gear.destroy
+    redirect_to root_path, status: :see_other
   end
 
   private
