@@ -7,6 +7,10 @@ class GearsController < ApplicationController
     @gear = Gear.new
   end
 
+  def show
+    @gear = Gear.find(params[:id])
+  end
+
   def create
     gear_owner = current_user
     @gear = Gear.new(gear_params)
