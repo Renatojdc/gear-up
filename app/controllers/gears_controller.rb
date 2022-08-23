@@ -8,9 +8,19 @@ class GearsController < ApplicationController
   end
 
   def create
-    gear_owner = User.find(params[:user_id])
-    @gear = Gear.new
+    gear_owner = current_user
+    @gear = Gear.new(gear_params)
     @gear.user = gear_owner
-    @gear.save
+    if @gear.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def gear_params
+    params.require(:gear).permit(:sport_type, :gear_type, :description, :address, :price)
   end
 end

@@ -1,6 +1,6 @@
 <div class="banner position-relative" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(http://cdn.shopify.com/s/files/1/0274/7219/articles/BOCK_JSkisShoot_Day2-360.jpg?v=1570118224);">
   <div class="container">
-    <h1>No time to waste <strong>Gear-up</strong> and <strong>have Fun</strong>!</h1>
+    <h1>No time to waste! <strong>Gear-up</strong> and <strong>have Fun</strong>!</h1>
   </div>
   <form class="row g-3 container w-25 p-3 bg-light rounded position-absolute top-50 end-0 translate-middle-y me-5">
     <div class="col-md-6">
@@ -26,7 +26,7 @@
 </div>
 
 <ul>
-<%@gears.each do |gear|%>
-<li><%=gear.gear_type%></li>
-<%end%>
+  <% @gears.each do |gear| %>
+  <li><%= gear.gear_type %></li>
+  <% end %>
 </ul>
