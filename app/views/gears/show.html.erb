@@ -1,0 +1,7 @@
+<div class="container">
+  <%= @gear.gear_type %> <%= @gear.sport_type %>
+  <%= @gear.description %> <%= @gear.price %>
+  <%= @gear.address %>
+  <br>
+  <%= link_to 'Delete this gear', gear_path(@gear), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+</div>
