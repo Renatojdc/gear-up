@@ -1,4 +1,6 @@
 class GearsController < ApplicationController
+  before_action :set_gear, only: %i[show edit update delete]
+
   def home
     @gears = Gear.all
   end
@@ -8,7 +10,6 @@ class GearsController < ApplicationController
   end
 
   def show
-    @gear = Gear.find(params[:id])
   end
 
   def create
@@ -22,7 +23,24 @@ class GearsController < ApplicationController
     end
   end
 
+  def edit
+    @gear
+  end
+
+  def update
+    @gear = Gear.update(gear_params)
+    redirect_to gear_path
+  end
+
+  def delete
+    @gear.destroy
+  end
+
   private
+
+  def set_gear
+    @gear = Gear.find(params[:id])
+  end
 
   def gear_params
     params.require(:gear).permit(:sport_type, :gear_type, :description, :address, :price)

@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Edit your gear</h1>
+
+    <%= simple_form_for @gear do |f| %>
+    <%= f.input :sport_type, placeholder: 'Surf' %>
+    <%= f.input :gear_type, placeholder: 'gloves' %>
+    <%= f.input :description %>
+    <%= f.input :price, placeholder: '12', label: '$' %>
+    <%= f.input :address, placeholder: 'Address' %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Back to home", root_path, class: 'btn btn-danger' %>
+</div>
