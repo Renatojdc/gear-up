@@ -1,0 +1,18 @@
+<h1>Bookings#index</h1>
+<p>Find me in app/views/bookings/index.html.erb</p>
+<div class="container w-75">
+  <h1 class="text-center">All our Bookings (<%=Booking.count %>)</h1>
+  <div class="row">
+    <% @bookings.each do |booking| %>
+    <div class="col d-flex justify-content-center">
+      <div class="card shadow mt-3" style="width: 18rem;">
+
+        <div class="card-body">
+          <h5 class="card-title"><%= booking.check_in %> for <%= booking.check_out %> in <%= booking.user.first_name %></h5>
+          <p class="card-text"><%= booking.gear.gear_type %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
