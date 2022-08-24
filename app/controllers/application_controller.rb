@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
+  # def after_sign_out_path_for(resource_or_scope)
+  #   p resource_or_scope
+  #   root_path
+  # end
+
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :address, :date_of_birth, :phone_number])

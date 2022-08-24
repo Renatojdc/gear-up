@@ -2,8 +2,8 @@
   <h1 class="text-center"><%= @gear.gear_type %></h1>
   <div class="row">
     <div class="col d-flex justify-content-center">
-      <div class="card shadow mt-3" style="width: 18rem;">
-        <img src="" class="card-img-top" alt="...">
+      <div class="card shadow mt-3" style="width: 50rem;">
+        <img src="https://images.unsplash.com/photo-1547955973-d7c7a6ec4970?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY2MTI3NDU2Nw&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">for <%= @gear.sport_type %></h5>
           <p class="card-text"><%= @gear.description %></p>
@@ -19,10 +19,12 @@
   </div>
 </div>
 
-<div class="container">
-  <%= simple_form_for [@gear, @booking] do |f| %>
-    <%= f.input :check_in %>
-    <%= f.input :check_out %>
-    <%= f.submit %>
-  <% end %>
+<div class="container w-50">
+    <%= simple_form_for [@gear, @booking] do |f| %>
+  <div class="row">
+      <div class="col"> <%= f.input :check_in %> </div>
+      <div class="col"> <%= f.input :check_out %> </div>
+  </div>
+      <%= f.submit %>
+    <% end %>
 </div>
