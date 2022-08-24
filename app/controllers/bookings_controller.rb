@@ -8,16 +8,11 @@ class BookingsController < ApplicationController
     authorize @booking
   end
 
-  def new
-    @booking = Booking.new
-    authorize @booking
-    @gear = Gear.find(params[:gear_id])
-  end
-
   def create
     @booking = Booking.new(booking_params)
+    @gear = Gear.find(params[:gear_id])
     @booking.user = current_user
-    @booking.gear = Gear.find(params[:gear_id])
+    @booking.gear = @gear
     authorize @booking
     @booking.save
     if @booking.save

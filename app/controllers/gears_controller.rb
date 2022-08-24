@@ -14,6 +14,7 @@ class GearsController < ApplicationController
 
   def show
     authorize @gear
+    @booking = Booking.new(gear: @gear)
   end
 
   def create
@@ -34,8 +35,8 @@ class GearsController < ApplicationController
 
   def update
     authorize @gear
-    @gear = Gear.update(gear_params)
-    redirect_to gear_path
+    @gear.update(gear_params)
+    redirect_to gear_path(@gear)
   end
 
   def destroy
