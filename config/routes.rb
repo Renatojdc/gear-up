@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :bookings, only: %i[index show]
 
   root to: "gears#home"
+  get '/search', to: 'gears#search', as: :search
   resources :gears, only: %i[new create show edit update destroy] do
     resources :bookings, only: %i[new create]
   end
