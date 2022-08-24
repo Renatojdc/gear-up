@@ -1,5 +1,6 @@
 class Gear < ApplicationRecord
   belongs_to :user
+  has_many :bookings
 
   validates :sport_type, presence: true
   validates :gear_type, presence: true
