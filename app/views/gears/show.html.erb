@@ -1,7 +1,28 @@
+<div class="container w-75">
+  <h1 class="text-center"><%= @gear.gear_type %></h1>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <div class="card shadow mt-3" style="width: 18rem;">
+        <img src="" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">for <%= @gear.sport_type %></h5>
+          <p class="card-text"><%= @gear.description %></p>
+          <ul class="list-group-flush list-inline">
+            <li class="list-inline-item"><i class="fa-solid fa-euro-sign"></i> <%=@gear.price %>/day</li>
+            <li class="list-inline-item"><%= @gear.amount %> units</li>
+          </ul>
+          <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_gear_path(@gear) %>
+          <%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, gear_path(@gear), class: "text-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete"}%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container">
-  <%= @gear.gear_type %> <%= @gear.sport_type %>
-  <%= @gear.description %> <%= @gear.price %>
-  <%= @gear.address %>
-  <br>
-  <%= link_to 'Delete this gear', gear_path(@gear), data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+  <%= simple_form_for [@gear, @booking] do |f| %>
+    <%= f.input :check_in %>
+    <%= f.input :check_out %>
+    <%= f.submit %>
+  <% end %>
 </div>
