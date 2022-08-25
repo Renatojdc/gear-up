@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :bookings, only: %i[index show]
+  get '/bookings/all_renters', to: 'bookings#all_renters', as: :all_renters
+  resources :bookings, only: %i[index show update destroy]
+
 
   root to: "gears#home"
   get '/search', to: 'gears#search', as: :search
