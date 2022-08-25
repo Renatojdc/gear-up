@@ -5,10 +5,16 @@
       <div class="card shadow mt-3" style="width: 50rem;">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
-            <% @gear.photos.each do |photo| %>
-              <div class="carousel-item active">
-                <%= cl_image_tag photo.key, crop: :fit %>
-              </div>
+            <% @gear.photos.each_with_index do |photo,index| %>
+              <%if index == 0%>
+                <div class="carousel-item active">
+                  <%= cl_image_tag photo.key, class:'d-block w-100' %>
+                </div>
+              <%else%>
+                <div class="carousel-item">
+                  <%= cl_image_tag photo.key, class:'d-block w-100' %>
+                </div>
+              <%end%>
             <% end %>
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
