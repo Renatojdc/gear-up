@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :gears
   has_many :bookings
+  has_many :gears_as_owners, through: :gears, source: :bookings
 
   validates :first_name, presence: true, length: { minimum: 3 }
   validates :last_name, presence: true, length: { minimum: 3 }
