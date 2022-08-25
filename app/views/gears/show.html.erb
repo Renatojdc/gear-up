@@ -33,8 +33,10 @@
             <li class="list-inline-item"><i class="fa-solid fa-euro-sign"></i> <%=@gear.price %>/day</li>
             <li class="list-inline-item"><%= @gear.amount %> units</li>
           </ul>
-          <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_gear_path(@gear) %>
-          <%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, gear_path(@gear), class: "text-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete"}%>
+          <%if current_user == @gear.user %>
+            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_gear_path(@gear) %>
+            <%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, gear_path(@gear), class: "text-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete"}%>
+          <%end%>
         </div>
       </div>
     </div>
