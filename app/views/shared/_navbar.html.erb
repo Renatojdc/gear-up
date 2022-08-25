@@ -13,15 +13,17 @@
           <li class="nav-item active">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+          <li class="nav-item p-2">
+            <p>Hello, <%=current_user.first_name%>!</p>
           </li>
           <li class="nav-item dropdown">
            <%= image_tag "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4cd3c7b4-e51d-42f9-8d27-03cc23d7b4eb/d3esauz-8c9f278d-234c-4633-b263-16e9ee207bac.png/v1/fill/w_600,h_708,q_80,strp/04___patrick_estrela_by_tonikei_d3esauz-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzA4IiwicGF0aCI6IlwvZlwvNGNkM2M3YjQtZTUxZC00MmY5LThkMjctMDNjYzIzZDdiNGViXC9kM2VzYXV6LThjOWYyNzhkLTIzNGMtNDYzMy1iMjYzLTE2ZTllZTIwN2JhYy5wbmciLCJ3aWR0aCI6Ijw9NjAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.3h5Fux0himdxCNTspgGDd6jax4vjXcBRcDeR1fHRxlc", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "My Bookings", bookings_path, class: "dropdown-item" %>
+              <%= link_to "My Gears", gears_path, class: "dropdown-item" %>
               <%= link_to "Add your Gear", new_gear_path, class: "dropdown-item" %>
               <%= link_to "Logout", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Change picture", class: "dropdown-item" %>
             </div>
           </li>
         <% else %>
@@ -32,10 +34,7 @@
               <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
             </li>
         <% end %>
-          <!--li class="nav-item"-->
-          <!--/li-->
       </ul>
     </div>
   </div>
 </div>
-
