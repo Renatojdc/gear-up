@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root to: "gears#home"
   get '/search', to: 'gears#search', as: :search
-  resources :gears, only: %i[new create show edit update destroy] do
+  resources :gears do
     resources :bookings, only: %i[new create]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
