@@ -46,7 +46,34 @@
         <div class="col d-flex justify-content-center">
           <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
               <div class="card shadow mt-3" style="width: 18rem;">
-                <img src=" https://images.unsplash.com/photo-1547955973-d7c7a6ec4970?crop=entropy&cs=tinysrgb&fit[…]redit&utm_medium=referral&utm_source=unsplash_source&w=1080" class="card-img-top" alt="...">
+                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                  <div class="carousel-inner">
+                    <% gear.photos.each_with_index do |photo,index| %>
+                      <%if index == 0%>
+                        <div class="carousel-item active">
+                          <%= cl_image_tag photo.key, class:'d-block w-100'%>
+                        </div>
+                      <%else%>
+                        <div class="carousel-item">
+                          <%= cl_image_tag photo.key, class:'d-block w-100'%>
+                        </div>
+                      <%end%>
+                    <% end %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
                 <div class="card-body">
                   <h5 class="card-title"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
                   <p class="card-text"><%= gear.description.capitalize %></p>

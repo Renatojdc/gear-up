@@ -14,8 +14,7 @@ class ApplicationController < ActionController::Base
   #   redirect_to(root_path)
   # end
 
-  # def after_sign_out_path_for(resource_or_scope)
-  #   p resource_or_scope
+  # def after_sign_out_path_for()
   #   root_path
   # end
 

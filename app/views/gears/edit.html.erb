@@ -7,7 +7,8 @@
     <%= f.input :description %>
     <%= f.input :price, placeholder: '12', label: '$' %>
     <%= f.input :address, placeholder: 'Address' %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
-  <%= link_to "Back to home", root_path, class: 'btn btn-danger' %>
+  <%= link_to "Back to home", root_path %>
 </div>
