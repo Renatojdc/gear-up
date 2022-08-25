@@ -37,9 +37,23 @@
         <div class="col d-flex justify-content-center">
           <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
               <div class="card shadow mt-3" style="width: 18rem;">
-                <% gear.photos.each do |photo| %>
-                  <%= cl_image_tag photo.key, crop: :fill %>
-                <% end %>
+                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                    <% gear.photos.each do |photo| %>
+                      <div class="carousel-item active">
+                        <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fit %>
+                      </div>
+                    <% end %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
                 <div class="card-body">
                   <h5 class="card-title"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
                   <p class="card-text"><%= gear.description.capitalize %></p>
