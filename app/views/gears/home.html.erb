@@ -37,7 +37,9 @@
         <div class="col d-flex justify-content-center">
           <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
               <div class="card shadow mt-3" style="width: 18rem;">
-                <img src=" https://images.unsplash.com/photo-1547955973-d7c7a6ec4970?crop=entropy&cs=tinysrgb&fit[…]redit&utm_medium=referral&utm_source=unsplash_source&w=1080" class="card-img-top" alt="...">
+                <% gear.photos.each do |photo| %>
+                  <%= cl_image_tag photo.key, crop: :fill %>
+                <% end %>
                 <div class="card-body">
                   <h5 class="card-title"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
                   <p class="card-text"><%= gear.description.capitalize %></p>
