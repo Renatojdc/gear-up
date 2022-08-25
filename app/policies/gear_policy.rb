@@ -33,4 +33,8 @@ class GearPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def search?
+    true
+  end
 end

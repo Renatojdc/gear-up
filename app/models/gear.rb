@@ -10,4 +10,21 @@ class Gear < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10, maximum: 100 }
   validates :amount, presence: true
   validates :photos, presence: true
+
+  include PgSearch::Model
+  pg_search_scope :search_location,
+                  against: [:address],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+                  pg_search_scope :search_sport,
+                  against: [:sport_type],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
+                  pg_search_scope :search_gear,
+                  against: [:gear_type],
+                  using: {
+                    tsearch: { prefix: true }
+                  }
 end

@@ -87,3 +87,6 @@ gem "dotenv-rails", groups: [:development, :test]
 
 # Cloudnary to get the images/videos to project
 gem "cloudinary"
+
+# Search mechanism
+gem "pg_search"

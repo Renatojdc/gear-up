@@ -1,9 +1,29 @@
 class GearsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[home show]
+  skip_before_action :authenticate_user!, only: %i[home show search]
   before_action :set_gear, only: %i[show edit update destroy]
 
   def home
     @gears = Gear.all
+    authorize @gears
+  end
+
+  def search
+    @bookings = Booking.all
+    @gears = Gear.search_location(params[:location])
+    unless params[:sport] == ""
+      if @gears.empty?
+        @gears = Gear.search_sport(params[:sport])
+      else
+        @gears = @gears.search_sport(params[:sport])
+      end
+    end
+    unless params[:gear] == ""
+      if @gears.empty?
+        @gears = Gear.search_gear(params[:gear])
+      else
+        @gears = @gears.search_gear(params[:gear])
+      end
+    end
     authorize @gears
   end
 
