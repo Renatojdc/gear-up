@@ -81,3 +81,7 @@ end
 
 # Pundit to handle authorization
 gem "pundit"
+
+# Secret Keys storage
+gem "dotenv-rails", groups: [:development, :test]
+
