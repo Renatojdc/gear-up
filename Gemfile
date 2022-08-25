@@ -81,3 +81,6 @@ end
 
 # Pundit to handle authorization
 gem "pundit"
+
+# Search mechanism
+gem "pg_search"

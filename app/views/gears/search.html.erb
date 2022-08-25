@@ -1,0 +1,20 @@
+<h1>Search</h1>
+
+<% search_check_in = params[:check_in].to_datetime %>
+<% search_check_out = params[:check_out].to_datetime %>
+<% available = true %>
+<%@gears.each do |gear|%>
+  <%@bookings.each do |booking|%>
+    <%if booking.gear == gear%>
+      <% if booking.check_in.to_datetime.between?(search_check_in, search_check_out) || booking.check_out.to_datetime.between?(search_check_in, search_check_out) %>
+        <% available = false %>
+      <% end %>
+    <% else %>
+      <% available = true %>
+    <% end %>
+  <% end %>
+  <% if available %>
+    <%= gear.gear_type %>
+    <%= gear.address %>
+  <% end %>
+<% end %>
