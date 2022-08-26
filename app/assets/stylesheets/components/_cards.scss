@@ -1,15 +1,26 @@
-.box p {
+.box p, h5 {
   overflow: hidden;
   text-overflow: ellipsis;
+  height: 3rem;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.box {
+  height: 10.5rem;
 }
 
 .card-img {
   width: 100%;
   height: 12.5rem;
   object-fit: contain;
+}
+
+.place-holder-img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
 }
 
 .card-div {
