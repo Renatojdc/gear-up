@@ -1,22 +1,32 @@
 <div class="container">
 
-  <h1><%= @booking.gear.sport_type %></h1>
-  <p><%= @booking.gear.gear_type %></p>
-  <p><%= @booking.gear.description %></p>
-  <p>$<%= @booking.gear.price %>/day</p>
-  <p><%= @booking.gear.address %></p>
-
-</div>
-
-<% unless @booking.confirmation == true || current_user == @booking.user %>
-  <div class="container w-50">
-      <%= simple_form_for @booking do |f| %>
-    <div class="row">
-        <div class="col"> <%= f.input :confirmation %> </div>
-    </div>
-        <%= f.submit 'Save' %>
+  <div class="row mt-3 bg-white shadow">
+      <% unless @booking.gear.photos.empty? %>
+        <%= cl_image_tag @booking.gear.photos[0].key, class:'d-block card-img' %>
+      <% else %>
+        <img class="place-holder-img h-100" src=<%=asset_url("placeholder.png") %>>
       <% end %>
+    <div class="col-9">
+      <h1><%= @booking.gear.sport_type %></h1>
+      <p>Renter: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+      <p><%= @booking.gear.gear_type %></p>
+      <p><%= @booking.gear.description %></p>
+      <p>$<%= @booking.gear.price %>/day</p>
+      <p><%= @booking.gear.address %></p>
+    </div>
   </div>
-<% end %>
 
-<%= link_to 'Cancel Booking', booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"} %>
+  <div class="row">
+      <% unless @booking.confirmation == true || current_user == @booking.user %>
+        <%= simple_form_for @booking do |f| %>
+    <div class="col">
+            <%= f.input :confirmation,  :as => :hidden, :input_html => { :value => true }  %>
+            <%= f.submit 'Confirm', class: "btn btn-success" %>
+    </div>
+        <% end %>
+      <% end %>
+      <div class="col">
+        <%= link_to 'Cancel Booking', booking_path(@booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to cancel this booking?"}, class: "link-secondary" %>
+      </div>
+  </div>
+</div>
