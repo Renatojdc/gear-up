@@ -2,87 +2,57 @@
   <div class="container">
     <h1>No time to waste! <strong>Gear-up</strong> and <strong>have Fun</strong>!</h1>
   </div>
-  <form action="<%= search_path %>" method="POST" class="row g-3 container w-25 p-3 bg-light rounded position-absolute top-50 end-0 translate-middle-y me-5">
+  <%= form_with url: search_path, method: :get, class: "row g-3 container w-25 p-3 bg-light rounded position-absolute top-50 end-0 translate-middle-y me-5" do %>
     <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Check-in</label>
-      <input type="date" class="form-control" id="inputEmail4">
+      <label class="form-label">Check-in</label>
+      <%= date_field_tag :check_in, params[:check_in], class: "form-control", value: Date.today %>
     </div>
     <div class="col-md-6">
-      <label for="inputPassword4" class="form-label">Check-out</label>
-      <input type="date" class="form-control" id="inputPassword4">
+      <label class="form-label">Check-out</label>
+      <%= date_field_tag :check_out, params[:check_out], class: "form-control", value: Date.today + 3%>
     </div>
     <div class="col-12">
       <label for="inputLocation" class="form-label">Location</label>
-      <input type="text" class="form-control" id="inputLocation" placeholder="1234 Main St">
+      <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Location"%>
     </div>
     <div class="col-md-6">
       <label for="inputSport" class="form-label">Sport</label>
-      <input type="text" class="form-control" id="inputSport">
+      <%= text_field_tag :sport, params[:sport], class: "form-control", placeholder: "Type of Sport"%>
     </div>
     <div class="col-md-6">
       <label for="inputSport" class="form-label">Gear type</label>
-      <input type="text" class="form-control" id="inputSport">
+      <%= text_field_tag :gear, params[:gear], class: "form-control", placeholder: "Type of Gear"%>
     </div>
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Search</button>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
     </div>
-  </form>
+  <% end %>
 </div>
-
-<%= form_with url: search_path, method: :get, class: "d-flex" do %>
-  <%= text_field_tag :location, params[:location], class: "form-control", placeholder: "Location"%>
-  <%= text_field_tag :gear, params[:gear], class: "form-control", placeholder: "Type of Gear"%>
-  <%= text_field_tag :sport, params[:sport], class: "form-control", placeholder: "Type of Sport"%>
-  <%= date_field_tag :check_in, params[:check_in], class: "form-control", label: "Check in"%>
-  <%= date_field_tag :check_out, params[:check_out], class: "form-control", label: "Check out"%>
-  <%= submit_tag "Search", class: "btn btn-primary" %>
-<% end %>
 
 
 <div class="container w-75">
   <h1 class="text-center">All our Gears (<%=Gear.count %>)</h1>
-  <div class="row">
+  <div class="row justify-content-start g-6">
     <% @gears.each do |gear| %>
-        <div class="col d-flex justify-content-center">
-          <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
-              <div class="card shadow mt-3" style="width: 18rem;">
-                  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                  <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  </div>
-                  <div class="carousel-inner">
-                    <% gear.photos.each_with_index do |photo,index| %>
-                      <%if index == 0%>
-                        <div class="carousel-item active">
-                          <%= cl_image_tag photo.key, class:'d-block w-100'%>
-                        </div>
-                      <%else%>
-                        <div class="carousel-item">
-                          <%= cl_image_tag photo.key, class:'d-block w-100'%>
-                        </div>
-                      <%end%>
-                    <% end %>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-                <div class="card-body">
-                  <h5 class="card-title"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex">
+            <div class="card mt-3 card-div" style="width: 18rem;">
+              <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
+                <% unless gear.photos.empty? %>
+                  <%= cl_image_tag gear.photos[0].key, class:'d-block card-img' %>
+                <% else %>
+                  <img class="place-holder-img" src=<%=asset_url("placeholder.png") %>>
+                <% end %>
+
+                <div class="box card-body">
+                  <h5 class="card-title fw-bold"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
                   <p class="card-text"><%= gear.description.capitalize %></p>
                   <ul class="list-group-flush list-inline">
-                    <li class="list-inline-item"><i class="fa-solid fa-euro-sign"></i> <%= gear.price %>/day</li>
+                    <li class="list-inline-item"><i class="fa-solid fa-dollar-sign"></i> <%= gear.price %>/day</li>
+                    <li class="list-inline-item"><%= gear.amount %> units</li>
                   </ul>
                 </div>
-              </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
     <% end %>
   </div>

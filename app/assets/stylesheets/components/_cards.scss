@@ -1,0 +1,32 @@
+.box p, h5 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 3rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.box {
+  height: 10.5rem;
+}
+
+.card-img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: contain;
+}
+
+.place-holder-img {
+  width: 100%;
+  height: 12.5rem;
+  object-fit: cover;
+}
+
+.card-div {
+  transition-duration: 0.2s;
+}
+
+.card-div:hover {
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+}

@@ -7,6 +7,10 @@ class GearsController < ApplicationController
     authorize @gears
   end
 
+  def index
+    @gears = policy_scope(Gear)
+  end
+
   def search
     @bookings = Booking.all
     @gears = Gear.search_location(params[:location])

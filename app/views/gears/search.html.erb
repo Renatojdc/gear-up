@@ -1,20 +1,43 @@
-<h1>Search</h1>
-
 <% search_check_in = params[:check_in].to_datetime %>
 <% search_check_out = params[:check_out].to_datetime %>
 <% available = true %>
-<%@gears.each do |gear|%>
-  <%@bookings.each do |booking|%>
-    <%if booking.gear == gear%>
-      <% if booking.check_in.to_datetime.between?(search_check_in, search_check_out) || booking.check_out.to_datetime.between?(search_check_in, search_check_out) %>
-        <% available = false %>
+
+<div class="container w-75">
+  <h1 class="text-center">Search Results</h1>
+  <div class="row justify-content-start g-6">
+    <%@gears.each do |gear|%>
+      <%@bookings.each do |booking|%>
+        <%if booking.gear == gear%>
+          <% if booking.check_in.to_datetime.between?(search_check_in, search_check_out) || booking.check_out.to_datetime.between?(search_check_in, search_check_out) %>
+            <% available = false %>
+          <% end %>
+        <% else %>
+          <% available = true %>
+        <% end %>
       <% end %>
-    <% else %>
-      <% available = true %>
+      <% if available %>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex">
+          <div class="card mt-3 card-div" style="width: 18rem;">
+            <%= link_to gear_path(gear), class: 'text-decoration-none text-dark' do %>
+              <% unless gear.photos.empty? %>
+                <%= cl_image_tag gear.photos[0].key, class:'d-block card-img' %>
+              <% else %>
+                  <img class="place-holder-img" src=<%=asset_url("placeholder.png") %>>
+              <% end %>
+              <div class="box card-body">
+                <h5 class="card-title fw-bold"><%= gear.gear_type.capitalize %> for <%= gear.sport_type.capitalize %> in <%= gear.address.capitalize %></h5>
+                <p class="card-text"><%= gear.description.capitalize %></p>
+              </div>
+              <div class="card-body">
+                <ul class="list-group-flush list-inline">
+                  <li class="list-inline-item"><i class="fa-solid fa-euro-sign"></i> <%= gear.price %>/day</li>
+                  <li class="list-inline-item"><%= gear.amount %> units</li>
+                </ul>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <% if available %>
-    <%= gear.gear_type %>
-    <%= gear.address %>
-  <% end %>
-<% end %>
+  </div>
+</div>
