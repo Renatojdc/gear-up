@@ -1,0 +1,27 @@
+  <div class="row g-2 justify-content-center">
+    <% @bookings.each do |booking| %>
+      <%= link_to booking_path(booking), class: "text-decoration-none" do %>
+        <div class="col d-flex">
+          <div class="card-product">
+            <% unless booking.gear.photos.empty? %>
+              <%= cl_image_tag booking.gear.photos[0].key, class:'d-block' %>
+            <% else %>
+              <img class="" src=<%=asset_url("placeholder.png") %>>
+            <% end %>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-12 col-md-6 card-product-infos info">
+                  <h2><%= booking.gear.gear_type.capitalize %></h2>
+                  <p><%= booking.gear.description.capitalize %></p>
+                </div>
+                <div class="col-12 col-md-6  card-product-infos dates">
+                  <h2>From: <%= booking.check_in %></h2>
+                  <h2>To:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<%= booking.check_out %></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
