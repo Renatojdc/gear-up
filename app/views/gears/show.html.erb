@@ -1,54 +1,38 @@
-<div class="container w-75">
-  <h1 class="text-center"><%= @gear.gear_type %></h1>
-  <div class="row">
-    <div class="col d-flex justify-content-center">
-      <div class="card shadow mt-3" style="width: 50rem;">
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-inner">
-            <% @gear.photos.each_with_index do |photo,index| %>
-              <%if index == 0%>
-                <div class="carousel-item active">
-                  <%= cl_image_tag photo.key, class:'d-block w-100' %>
-                </div>
-              <%else%>
-                <div class="carousel-item">
-                  <%= cl_image_tag photo.key, class:'d-block w-100' %>
-                </div>
-              <%end%>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">for <%= @gear.sport_type %></h5>
-          <p class="card-text"><%= @gear.description %></p>
-          <ul class="list-group-flush list-inline">
-            <li class="list-inline-item"><i class="fa-solid fa-dollar-sign"></i> <%=@gear.price %>/day</li>
-            <li class="list-inline-item"><%= @gear.amount %> units</li>
-          </ul>
-          <%if current_user == @gear.user %>
-            <%= link_to '<i class="fa-solid fa-pen-to-square"></i>'.html_safe, edit_gear_path(@gear) %>
-            <%= link_to '<i class="fa-solid fa-trash-can"></i>'.html_safe, gear_path(@gear), class: "text-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete"}%>
-          <%end%>
+<div class="container" style="padding-top: 20px;">
+  <div class="card-product-s">
+    <div class="col-4">
+      <div id="carouselExampleControls" class="carousel slide w-100"  data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <%@gear.photos.each_with_index do |photo,index|%>
+            <%if index == 0%>
+                  <div class="carousel-item active">
+                    <%= cl_image_tag photo.key, class:'d-block w-100' %>
+                  </div>
+                <%else%>
+                  <div class="carousel-item">
+                    <%= cl_image_tag photo.key, class:'d-block w-100' %>
+                  </div>
+                <%end%>
+            <%end%>
         </div>
       </div>
     </div>
+    <div class="card-product-infos-s">
+    <h1><%=@gear.gear_type%>
+      <h2>For <%= @gear.sport_type %></h2>
+      <p>Description: <%= @gear.description %></p>
+      <p>Price: <%= @gear.price %>$/per day</p>
+      <p>Amount: <%= @gear.amount %></p>
+      <p>Owner: <%=@gear.user.first_name%> <%= @gear.user.last_name%></p>
+    </div>
   </div>
-</div>
-
-<div class="container w-50">
-    <%= simple_form_for [@gear, @booking] do |f| %>
-  <div class="row">
-      <div class="col"> <%= f.input :check_in %> </div>
-      <div class="col"> <%= f.input :check_out %> </div>
+  <div class="container my-shadow bg-white mt-3 p-3 w-50 text-center">
+      <%= simple_form_for [@gear, @booking] do |f| %>
+        <div class="row">
+          <div class="col-md-12 col-lg-6"> <%= f.input :check_in %> </div>
+          <div class="col-md-12 col-lg-6"> <%= f.input :check_out %> </div>
+        </div>
+        <%= f.submit "Send booking request", class: "btn btn-primary btn-block" %>
+      <% end %>
   </div>
-      <%= f.submit %>
-    <% end %>
 </div>

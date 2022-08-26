@@ -76,6 +76,49 @@
   padding: 16px;
 }
 
+.card-product-s {
+  overflow: hidden;
+  height: 250px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+}
+
+.card-product-s img {
+  height: 100%;
+  width: 120px;
+  object-fit: fill;
+}
+
+.card-product-s h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product-s h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product-s p {
+  font-size: 19px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product-s .card-product-infos-s {
+  padding: 16px;
+}
+
+.my-shadow {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
 @media only screen and (max-width: 580px) {
   .dates {
     margin-bottom: 25px;
