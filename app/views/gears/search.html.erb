@@ -18,3 +18,37 @@
     <%= gear.address %>
   <% end %>
 <% end %>
+
+<div class="container w-75">
+  <h1 class="text-center">Search Results</h1>
+  <div class="row">
+    <%@gears.each do |gear|%>
+      <%@bookings.each do |booking|%>
+        <%if booking.gear == gear%>
+          <% if booking.check_in.to_datetime.between?(search_check_in, search_check_out) || booking.check_out.to_datetime.between?(search_check_in, search_check_out) %>
+            <% available = false %>
+          <% end %>
+        <% else %>
+          <% available = true %>
+        <% end %>
+      <% end %>
+      <% if available %>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 d-flex justify-content-cente">
+          <div class="card mt-3 card-div" style="width: 18rem;">
+            <%= cl_image_tag gear.photos[0].key, class:'d-flex card-img' %>
+            <div class="box card-body">
+              <h5 class="card-title"><%= gear.gear_type %></h5>
+              <p class="card-text"><%= gear.description %></p>
+            </div>
+            <div class="card-body">
+              <ul class="list-group-flush list-inline">
+                <li class="list-inline-item"><i class="fa-solid fa-euro-sign"></i> <%= gear.price %>/day</li>
+                <li class="list-inline-item"><%= gear.amount %> units</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
